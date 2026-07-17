@@ -53,6 +53,7 @@ export const Signup = () => {
             value={form.password}
             placeholder="Password"
             onChange={handleChange }
+            minLength={6}
         />
         <label htmlFor="confirmPassword">Confirm Password:</label>
         <input
@@ -62,6 +63,7 @@ export const Signup = () => {
             value={form.confirmPassword}
             placeholder="Confirm Password"
             onChange = {handleChange}
+            minLength={6}
         />
         <button type="submit">Signup</button>
     </form>
