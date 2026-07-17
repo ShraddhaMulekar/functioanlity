@@ -1,13 +1,15 @@
 import { useState } from 'react'
-import type { SignupProps } from '../types/auth'
+import type { SignupError, SignupForm } from '../types/auth'
 
 export const Signup = () => {
-    const [form, setForm] = useState<SignupProps>({
+    const [form, setForm] = useState<SignupForm>({
         name: "",
         email: "",
         password: "",
         confirmPassword: ""
     });
+
+    const [error, setError] = useState<SignupError>({})
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target
@@ -20,10 +22,10 @@ export const Signup = () => {
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
-        if (!form.name || !form.email || !form.password || !form.confirmPassword) {
-            alert("Please fill all the fields")
-            return
-        }
+        // if (!form.name || !form.email || !form.password || !form.confirmPassword) {
+        //     alert("Please fill all the fields")
+        //     return
+        // }
 
         console.log(form)
     }
