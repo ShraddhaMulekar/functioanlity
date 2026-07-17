@@ -17,7 +17,7 @@ export const Signup = () => {
         }))
     }
 
-    const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
         if (!form.name || !form.email || !form.password || !form.confirmPassword) {
