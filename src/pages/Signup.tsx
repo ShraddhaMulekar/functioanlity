@@ -11,7 +11,10 @@ export const Signup = () => {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target
-        setForm({ ...form, [name]: value })
+        setForm((prev) =>({ 
+            ...prev, 
+            [name]: value,
+        }))
     }
 
     const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
