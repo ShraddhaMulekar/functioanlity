@@ -9,6 +9,11 @@ export const Signup = () => {
         confirmPassword: ""
     });
 
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target
+        setForm({ ...form, [name]: value })
+    }
+
     const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault()
 
@@ -16,7 +21,7 @@ export const Signup = () => {
             alert("Please fill all the fields")
             return
         }
-        
+
         console.log(form)
     }
 
@@ -26,34 +31,39 @@ export const Signup = () => {
         <label htmlFor="name">Name:</label>
         <input
             id="name"
+            name= "name"
             value={form.name}
             placeholder="Name"
-            onChange = {(e) => setForm({ ...form, name: e.target.value })}
+            onChange={handleChange}
         />
         <label htmlFor="email">Email:</label>
         <input
             id="email"
+            name= "email"
+            type="email"
             value={form.email}
             placeholder="Email"
-            onChange = {(e) => setForm({ ...form, email: e.target.value })}
+            onChange={handleChange}
         />
         <label htmlFor="password">Password:</label>
         <input
             id="password"
+            name= "password"
             type="password"
             value={form.password}
             placeholder="Password"
-            onChange = {(e) => setForm({ ...form, password: e.target.value })}
+            onChange={handleChange }
         />
         <label htmlFor="confirmPassword">Confirm Password:</label>
         <input
             id="confirmPassword"
+            name= "confirmPassword"
             type="password"
             value={form.confirmPassword}
             placeholder="Confirm Password"
-            onChange = {(e) => setForm({ ...form, confirmPassword: e.target.value })}
+            onChange = {handleChange}
         />
-        <button>Signup</button>
+        <button type="submit">Signup</button>
     </form>
   )
 }
