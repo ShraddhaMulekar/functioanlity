@@ -30,6 +30,14 @@ export const Signup = () => {
             validationErrors.confirmPassword = "Confirm Password is required"
         }
 
+        if(form.email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(form.email)){
+            validationErrors.email = "Invalid email address"
+        }
+
+        if(form.password && form.confirmPassword && form.password !== form.confirmPassword){
+            validationErrors.confirmPassword = "Passwords do not match"
+        }
+
         setError(validationErrors)
         return Object.keys(validationErrors).length === 0
     }
@@ -46,7 +54,6 @@ export const Signup = () => {
         e.preventDefault()
 
         if(!validateForm()){
-            console.log("error")
             return
         }
 
