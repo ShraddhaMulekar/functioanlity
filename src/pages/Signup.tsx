@@ -10,6 +10,7 @@ export const Signup = () => {
     });
 
     const [error, setError] = useState<SignupError>({})
+    const [loading, setLoading] = useState(false)
 
     const validateForm = ()=>{
         const validationErrors: SignupError = {}
@@ -57,7 +58,13 @@ export const Signup = () => {
             return
         }
 
-        console.log(form)
+        setLoading(true)
+        console.log(form) // API call
+        setLoading(false)
+    }
+
+    if(loading){
+        return <h1>Loading...</h1>
     }
 
   return (
