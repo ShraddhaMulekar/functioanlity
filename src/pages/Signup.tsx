@@ -11,6 +11,29 @@ export const Signup = () => {
 
     const [error, setError] = useState<SignupError>({})
 
+    const validateForm = ()=>{
+        const validationErrors: SignupError = {}
+
+        if(!form.name.trim()){
+            validationErrors.name = "Name is required"
+        }
+
+        if(!form.email.trim()){
+            validationErrors.email = "Email is required"
+        }   
+
+        if(!form.password.trim()){
+            validationErrors.password = "Password is required"
+        }
+
+        if(!form.confirmPassword.trim()){
+            validationErrors.confirmPassword = "Confirm Password is required"
+        }
+
+        setError(validationErrors)
+        return Object.keys(validationErrors).length === 0
+    }
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target
         setForm((prev) =>({ 
@@ -22,10 +45,10 @@ export const Signup = () => {
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
-        // if (!form.name || !form.email || !form.password || !form.confirmPassword) {
-        //     alert("Please fill all the fields")
-        //     return
-        // }
+        if(!validateForm()){
+            console.log("error")
+            return
+        }
 
         console.log(form)
     }
@@ -34,6 +57,7 @@ export const Signup = () => {
     <form onSubmit={handleSubmit}>
         <h1>Signup Page</h1>
         <label htmlFor="name">Name:</label>
+        {error.name && <span className="error">{error.name}</span>}
         <input
             id="name"
             name= "name"
@@ -41,7 +65,9 @@ export const Signup = () => {
             placeholder="Name"
             onChange={handleChange}
         />
+        <br />
         <label htmlFor="email">Email:</label>
+        {error.email && <span className="error">{error.email}</span>}
         <input
             id="email"
             name= "email"
@@ -50,7 +76,9 @@ export const Signup = () => {
             placeholder="Email"
             onChange={handleChange}
         />
+        <br />
         <label htmlFor="password">Password:</label>
+        {error.password && <span className="error">{error.password}</span>}
         <input
             id="password"
             name= "password"
@@ -60,7 +88,9 @@ export const Signup = () => {
             onChange={handleChange }
             minLength={6}
         />
+        <br />
         <label htmlFor="confirmPassword">Confirm Password:</label>
+        {error.confirmPassword && <span className="error">{error.confirmPassword}</span>}
         <input
             id="confirmPassword"
             name= "confirmPassword"
@@ -70,6 +100,7 @@ export const Signup = () => {
             onChange = {handleChange}
             minLength={6}
         />
+        <br />
         <button type="submit">Signup</button>
     </form>
   )
